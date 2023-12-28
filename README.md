@@ -6,3 +6,4 @@
 | 切水果 | HTML5星空 | [https://www.w3cschool.cn/html5/html5-game2.html](https://www.w3cschool.cn/html5/html5-game2.html) |
 | 中国象棋 | w3cschool | [https://www.w3cschool.cn/html5/html5-game2.html](https://www.w3cschool.cn/html5/html5-game2.html) |
 | 捕鱼达人 | w3cschool | [https://www.w3cschool.cn/html5/html5-game2.html](https://www.w3cschool.cn/html5/html5-game2.html) |
+| 打地鼠 | w3cschool | [https://www.w3cschool.cn/html5/html5-game2.html](https://www.w3cschool.cn/html5/html5-game2.html) |
