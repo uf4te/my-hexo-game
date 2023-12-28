@@ -2,4 +2,4 @@
 
 | 游戏名 | 原作者 | 资源链接 |
 |:---|:---|:---|
-| 扫雷 | itabbot | [https://game.uf4te.cn/sweeper/src/index.html](https://github.com/itabbot/mine-sweeper) |
+| 扫雷 | itabbot | [https://github.com/itabbot/mine-sweeper](https://github.com/itabbot/mine-sweeper) |
