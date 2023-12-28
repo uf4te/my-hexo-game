@@ -2,10 +2,14 @@
 <html>
   <head>
    <style type="text/css">
+   #wrapper {
+     width: 600px; /* 设置包装容器的宽度 */
+     margin-left: auto;
+     margin-right: auto;
+   }
    #dbg {
      font-family: "Helvetica", cursive, sans-serif;
      border: 1px solid black;
-     width: 600;
    }
    body {
      background:#000;
@@ -447,6 +451,25 @@
                      and can be found in the Loader.js file --->
 
   <body onload="bodyLoaded();">
+        <div id="wrapper">
+                <canvas align="left" id="theCanvas" width="600" height="400">
+                        <h2 align="center">
+                        Firefox, Opera, Chrome or other HTML5 compliant browser required.
+                        <br>
+                        </h2>
+                        <h3>
+                        <p align="center">
+                        This site requires a modern browser for graphics and sound effects.  
+                        <br><br>
+                        A compliant browser can be downloaded from any of the following sites:
+                        <br>
+                        <a href="http://www.mozilla.com/en-US/firefox/firefox.html">Firefox</a>
+                        <br>
+                        <a href="http://www.opera.com/">Opera</a><br>
+                        <a href="http://www.google.com/chrome">Chrome</a>
+                        </p>
+                        </h3>
+                </canvas>
 
   <table cellpadding="0" border="0" cellspacing="0" frame="void">
   <tr> 
@@ -474,6 +497,9 @@
    <tr>
    <table>
    <div id="dbg"></div>
+    </div>
+  </body>
+</html>
 
    <!--- put all of the game objects into the document which makes writing
          the load screen pretty trivial; a really simple loader.  as items
