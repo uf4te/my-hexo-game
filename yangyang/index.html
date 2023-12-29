@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+  <link rel="stylesheet" href="index.css">
+  <script src="https://unpkg.com/vue@3.2.12/dist/vue.global.js"></script>
+  <script src="./utils/audio.js"></script>
+  <title>羊了个羊小游戏 | uf4te</title>
+</head>
+<body>
+  <div id="app">
+    <h1>第 {{ level }} 关</h1>
+    <header>
+      <span class="btn" @click="handleStart" style="font-size: 15px;">开始游戏</span>
+      <span class="btn" @click="handleReset" style="font-size: 15px;">重置</span>
+      <span class="btn" @click="handleSwitch('prev')" style="font-size: 15px;">上一关</span>
+      <span class="btn" @click="handleSwitch('next')" style="font-size: 15px;">下一关</span>
+      <p class="center">
+        行: 
+        <select v-model="config.row">
+          <option :value ="item" v-for="item in [3,4,5,6,7,8]">{{ item }}</option>
+        </select>
+        列: 
+        <select v-model="config.col">
+          <option :value ="item" v-for="item in [3,4,5,6,7,8]">{{ item }}</option>
+        </select>
+      </p>
+    </header>
+    <!-- 容器 -->
+    <div class="wrap">
+      <div class="container" :style="setContainerStyle()">
+        <div class="card-wrap"
+          v-for="(item, index) in cards" 
+          :key="index"  
+          :style="setCardStyle(item)">
+          <div class="card" 
+            :class="[item.not && 'is-allow', item.id]"
+            :style="setAnimation(item)"
+            @click="clickCard(item, index)"
+          >
+            <span>{{ item.icon }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 卡槽 -->
+    <div class="card-slot"></div>
+  </div>
+  <script>
+    const { reactive, ref, toRefs, setup, computed, onMounted, watch } = Vue;
+    const App = {
+      setup() {
+        // 初始化音乐控件
+        const audio = new CustomAudio({
+          template: '#app',
+          bgmSrc: './static/bgm.mp3',
+          clickBgm: './static/clickBgm.mp3'
+        });
+        window.customAudio = audio;
+        /**
+         * 容器样式
+         */
+        const setContainerStyle = () => {
+          const { base, row, col } = config;
+          return `height: ${base * row}px; width: ${base * col}px`;
+        }
+        /**
+         * 设置卡片位置
+         */
+        const setCardStyle = ({ x, y }) => {
+          return `
+            transform: translateX(${x}px) translateY(${y}px);
+          `;
+        }
+        /**
+         * 设置卡片动画
+         */
+        const setAnimation = ({ id, clear, display }) => {
+          let isClear = ''
+          if(clear) {
+            isClear = `animation: scaleDraw ${config.animationTime}ms;`
+          }
+          if(display) {
+            isClear += 'display: none;';
+          }
+          return isClear;
+        }
+        
+        /**
+         * 随机生成指定长度id
+         */
+        const randomCreateId = (length) => {
+            return (Math.random() + new Date().getTime()).toString(32).slice(0,length);
+        }
+
+        onMounted(() => {
+          getDoMInfo();
+        })
+        const getDoMInfo = () => {
+          const containerDom = document.querySelector('.container');
+          data.containerInfo = containerDom.getBoundingClientRect();
+          const cardSlotDom = document.querySelector('.card-slot');
+          data.cardSlotInfo = cardSlotDom.getBoundingClientRect();
+        }
+
+        // 配置项
+        const config = reactive({
+          // 与卡片宽度一致
+          base: 40,
+          // 卡槽中最长卡片长度
+          selectMaxLength: 7,
+          // 卡槽设定多少个相同卡片就消掉
+          maxCount: 3,
+          // 动画时间 毫秒
+          animationTime: 400,
+          // 最大关数
+          maxLevel: 10,
+          // 行
+          row: 8,
+          // 列
+          col: 8
+        });
+
+        const data = reactive({
+          level: 1,
+          cards: [],
+          select: new Map(),
+          containerInfo: null,
+          cardSlotInfo: null
+        });
+
+        /**
+         * 等级切换 重置游戏 
+         */
+        watch(() => data.level, () => {
+          handleReset();
+        });
+        watch(() => config.row, () => {
+          getDoMInfo();
+          data.select.clear();
+          data.cards = [];
+        });
+        watch(() => config.col, () => {
+          getDoMInfo();
+          data.select.clear();
+          data.cards = [];
+        });
+
+        /**
+         * 卡槽已存在卡片长度
+         */
+        const selectLength = computed(() => {
+          let length = 0;
+          data.select.forEach((item) => {
+            length += item.length;
+          })
+          return length;
+        });
+
+        /**
+         * 卡片默认图标
+         */
+        const defaultIcons = ['🐑', '🌹', '🐖', '🍚', '👓', '🐭', '😘', '🍑', '⭐', '💩', '💊', '🎈'];
+        /**
+         * 根据等级选择卡片图标的多种选择
+         */
+        const icons = computed(() => {
+          return defaultIcons.slice(0, 2 * data.level);
+        });
+
+        /**
+         * 卡片默认偏移值 随意设定
+         */
+        const defaultOffsetValue = [7, -7, 20, -20, 25, -25, 33, -33, 40, -40];
+        const defaultOffsetValueLength = defaultOffsetValue.length;
+
+        /**
+         * 卡片默认生成3的倍数 不是3的倍数的则不可能通关
+         */
+        const defaultRounds = [3, 6, 9, 3, 6, 3, 3, 6, 3];
+
+
+        /**
+         * 初始化
+         */
+        const init = () => {
+          console.log('init game--->', icons.value);
+          data.select.clear();
+          for(const i in icons.value) {
+            // 随机3的倍数
+            const rounds = defaultRounds[Math.floor(Math.random() * defaultRounds.length)];
+            for(let k = 0; k < rounds; k++) {
+              createCardInfo(icons.value[i]);
+            }
+          }
+          checkShading();
+        }
+
+        /**
+         * 创建卡片属性
+         * id icon x y 。。。
+         */
+        const createCardInfo = (icon) => {
+          // 偏移
+          const offset = defaultOffsetValue[Math.floor(defaultOffsetValueLength * Math.random())];
+          // 随机8列 8行
+          const row = Math.floor(Math.random() * config.row);
+          const col = Math.floor(Math.random() * config.col);
+
+          let x = col * config.base + offset;
+          let y = row * config.base + offset;
+          
+          data.cards.push({
+            id: randomCreateId(6),
+            icon,
+            x,
+            y,
+            // 控制遮罩层
+            not: true,
+            // 是否在卡槽中 0否 1是
+            status: 0,
+            // 是否清除
+            clear: false,
+            // 隐藏
+            display: false
+          })
+        }
+
+        /**
+         * 是否能点击 是否有阴影
+         */
+        const checkShading = () => {
+          const cards = data.cards;
+          for (let i = 0; i < cards.length; i++) {
+            const cur = cards[i];
+            cur.not = true;
+            // 已消完卡片和在卡槽内的卡片跳过
+            if (cur.status !== 0 || cur.display) continue;
+            const { x: x1, y: y1 } = cur;
+            const x2 = x1 + config.base,
+                y2 = y1 + config.base;
+
+            for (let j = i + 1; j < cards.length; j++) {
+              const compare = cards[j];
+              // 已消完卡片和在卡槽内的卡片跳过
+              if (compare.status !== 0 || compare.display) continue;
+              const { x, y } = compare;
+              if (!(y + config.base <= y1 || y >= y2 || x + config.base <= x1 || x >= x2)) {
+                  cur.not = false;
+                  break;
+              }
+            }
+          }
+        }
+
+        /**
+         * 开始游戏
+         */
+        const handleStart = () => {
+          if(data.cards.length) {
+            window.alert('游戏中');
+            return;
+          }
+          audio.play();
+          init();
+        }        
+        
+        /**
+         * 重置游戏
+         */
+        const handleReset = () => {
+          // 清空已有的卡片
+          data.cards.length = 0;
+          data.select.clear();
+          init();
+          audio.replay();
+        }
+
+        /**
+         * 切换关卡
+         */
+        const handleSwitch = (type) => {
+          if(type === 'prev') {
+            if(data.level === 1) {
+              window.alert('已经是第一关了');
+              return;
+            }
+            data.level--;
+          } else {
+            if(data.level === defaultIcons.length) {
+              window.alert('已经是最后一关了');
+              return;
+            }
+            data.level++;
+          }
+        }
+
+        /**
+         * 点击卡片
+         */
+        const clickCard = async (item, index) => {
+          // 卡槽中的卡片不允许点击
+          if(item.status === 1) return;
+
+          // 播放点击音乐
+          audio.rePlayClickBgm();
+
+          const length = selectLength.value;
+          const { selectMaxLength } = config;
+          if(item.not && length < selectMaxLength) {
+            const cards = data.cards;
+            const currentCard = cards[index];
+            currentCard.status = 1;
+
+            // 刷新卡槽位置
+            await refreshCardPosition(currentCard);
+            // 刷新被遮挡卡片
+            checkShading();
+          };
+
+           // 校验卡片卡槽卡片数量长度
+          setTimeout(() => {
+            if(selectLength.value >= config.selectMaxLength) {
+              alert('游戏失败 重新开始');
+              handleReset();
+            }
+          }, config.animationTime);
+
+        }
+
+        /**
+         * 刷新卡槽卡片位置
+         */
+        const refreshCardPosition = (item) => {
+          const { x, y } = data.cardSlotInfo;
+          const { top, left } = data.containerInfo;
+
+          if (item) {
+            // 是否存在
+            const cards = data.select.get(item.icon);
+            if (cards) {
+              cards.push(item);
+              checkSelectQueue(cards);
+            } else {
+              data.select.set(item.icon, [item]);
+            }
+          }
+          // 重新刷新位置
+          let index = 0;
+          const poor = (x < left) ? -(left - x) : (x - left);
+          data.select.forEach((item) => {
+            item.forEach((card) => {
+              card.x = index * config.base + poor + config.base / 2;
+              card.y = y - top + 12;
+              index++;
+            });
+          });
+        }
+
+        /**
+         * 校验卡槽中是否3个相同的存在
+         */
+        const checkSelectQueue = (cards) => {
+          if(cards.length === config.maxCount) {
+            cards.forEach((item) => {
+              item.clear = true;
+            })
+            
+            setTimeout(() => {
+              // 删除卡槽中卡片
+              data.select.delete(cards[0].icon);
+              // 删除cards中的卡片 软删除 display代替
+              cards.forEach((item) => {
+                item.display = true;
+              })
+            }, config.animationTime - 100);
+
+            setTimeout(() => {
+              // 属性卡槽卡片位置
+              refreshCardPosition();
+
+              // 校验是否卡片列表是否还有未消除的卡片
+              const hasCards = data.cards.filter((item) => !item.display);
+              const level = data.level + 1;
+              if(!hasCards.length && level < config.maxLevel) {
+                alert(`通关啦, 开始第${level}关`);
+                data.level++;
+              }
+              if (!hasCards.length && level >= config.maxLevel) {
+                {
+                alert('恭喜 🎉🎉 游戏通关咯 即将回到第一关');
+                data.level = 1;
+              }
+              }
+            }, config.animationTime + 100);
+          }
+        }
+
+        const dataRefs = toRefs(data);
+        return {
+          ...dataRefs,
+          config,
+          handleStart,
+          setContainerStyle,
+          setCardStyle,
+          setAnimation,
+          handleSwitch,
+          handleReset,
+          clickCard
+        }
+      }
+    }
+    Vue.createApp(App).mount('#app');
+  </script>
+</body>
+</html>
