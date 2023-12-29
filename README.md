@@ -31,4 +31,4 @@
 | 僵尸生存 | zombie | lxjsoilor | [https://github.com/lxjsoilor/zombie](https://github.com/lxjsoilor/zombie) |
 | 灵魂漂移 | Souldrift | lingangle | [https://github.com/lovedan/HTML5Games](https://github.com/lovedan/HTML5Games) |
 | 推箱子 | Sokoban | provence3658 | [https://github.com/provence3658/html5CanvasFinal](https://github.com/provence3658/html5CanvasFinal) |
-
+| 飞机大战 | plane-wars | duktig666(RenShiWei) | [https://github.com/duktig666/plane-wars-gaming](https://github.com/duktig666/plane-wars-gaming)
