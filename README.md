@@ -10,6 +10,7 @@
 | HexGL | HexGL | Thibaut Despoulain | [https://github.com/BKcore/HexGL](https://github.com/BKcore/HexGL) |
 | 2048 | 2048 | nnngu | [https://github.com/nnngu/js_game_2048](https://github.com/nnngu/js_game_2048) |
 | 甄开心小镇疑云 | 3d-panoramic-vision | wangb | [https://github.com/dragonir/3d-panoramic-vision](https://github.com/dragonir/3d-panoramic-vision) |
+| 斗地主 | Landlords-fight-the-landlord | qq418938472 | [https://github.com/qq418938472/FightAgainstLandlords](https://github.com/qq418938472/FightAgainstLandlords) |
 | 拼图 | puzzle | fyuanfen | [https://github.com/fyuanfen/html5-puzzle?tab=readme-ov-file](https://github.com/fyuanfen/html5-puzzle?tab=readme-ov-file) |
 | 纸牌记忆 | Card-Memory | Hao-Wu | [https://github.com/Hao-Wu/HTML5-Card-Memory-Game](https://github.com/Hao-Wu/HTML5-Card-Memory-Game) |
 | 羊了个羊 | yangyang | a835100635 | [https://github.com/a835100635/yangyang](https://github.com/a835100635/yangyang) |
