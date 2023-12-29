@@ -10,7 +10,7 @@
 | HexGL | HexGL | Thibaut Despoulain | [https://github.com/BKcore/HexGL](https://github.com/BKcore/HexGL) |
 | 2048 | 2048 | nnngu | [https://github.com/nnngu/js_game_2048](https://github.com/nnngu/js_game_2048) |
 | 甄开心小镇疑云？ | 3d-panoramic-vision | wangb | [https://github.com/dragonir/3d-panoramic-vision](https://github.com/dragonir/3d-panoramic-vision) |
-
+| 拼图 | puzzle | fyuanfen | [https://game.uf4te.cn/puzzle/src/index.html](https://game.uf4te.cn/puzzle/src/index.html) |
 
 
 
