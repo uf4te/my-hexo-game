@@ -21,5 +21,5 @@
 | 大富翁 | RichMan | Rayyyz | [https://github.com/Rayyyz/RichMan?tab=readme-ov-file](https://github.com/Rayyyz/RichMan?tab=readme-ov-file) |
 | 走迷宫 | maze | knightyun | [https://github.com/knightyun/maze-game](https://github.com/knightyun/maze-game) |
 | 密室逃脱 | mishi | chriiess | [https://github.com/xienima/Html5-Game](https://github.com/xienima/Html5-Game) |
-
+| 小青蛙过河 | qingwa | chriiess | [https://github.com/xienima/Html5-Game](https://github.com/xienima/Html5-Game) |
 
