@@ -15,3 +15,6 @@
 | 羊了个羊 | yangyang | a835100635 | [https://github.com/a835100635/yangyang](https://github.com/a835100635/yangyang) |
 | 贪吃蛇 | snake | gaga-change | [https://github.com/gaga-change/game-snake](https://github.com/gaga-change/game-snake) |
 | 俄罗斯方块 | tetris | BlankSpacePlus | [https://github.com/BlankSpacePlus/javascript-tetris](https://github.com/BlankSpacePlus/javascript-tetris) |
+| 两只鱼 | twofish | white-shirt | [https://github.com/white-shirt/HTML5-Game](https://github.com/white-shirt/HTML5-Game) |
+
+
