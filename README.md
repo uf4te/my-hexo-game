@@ -28,3 +28,6 @@
 | 找你妹 | zhaonimei | chriiess | [https://github.com/xienima/Html5-Game](https://github.com/xienima/Html5-Game) |
 | 一笔画 | yibihua | chriiess | [https://github.com/xienima/Html5-Game](https://github.com/xienima/Html5-Game) |
 | 僵尸生存 | zombie | lxjsoilor | [https://github.com/lxjsoilor/zombie](https://github.com/lxjsoilor/zombie) |
+| 灵魂漂移 | Souldrift | lingangle | [https://github.com/lovedan/HTML5Games](https://github.com/lovedan/HTML5Games) |
+
+
