@@ -17,4 +17,4 @@
 | 俄罗斯方块 | tetris | BlankSpacePlus | [https://github.com/BlankSpacePlus/javascript-tetris](https://github.com/BlankSpacePlus/javascript-tetris) |
 | 两只鱼 | twofish | white-shirt | [https://github.com/white-shirt/HTML5-Game](https://github.com/white-shirt/HTML5-Game) |
 | 圈小猫 | catch-the-cat | xf11075 | [https://github.com/xf11075/catch-the-cat?tab=readme-ov-file](https://github.com/xf11075/catch-the-cat?tab=readme-ov-file) |
-
+| 五子棋 | gobang | jasnature | [https://github.com/jasnature/gobang_html5](https://github.com/jasnature/gobang_html5) |
