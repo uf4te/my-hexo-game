@@ -9,8 +9,7 @@
 | 打地鼠 | mouseHit | w3cschool | [https://www.w3cschool.cn/html5/html5-game2.html](https://www.w3cschool.cn/html5/html5-game2.html) |
 | HexGL | HexGL | Thibaut Despoulain | [https://github.com/BKcore/HexGL](https://github.com/BKcore/HexGL) |
 | 2048 | 2048 | nnngu | [https://github.com/nnngu/js_game_2048](https://github.com/nnngu/js_game_2048) |
-| 甄开心小镇疑云？ | 3d-panoramic-vision | wangb
- | [https://github.com/dragonir/3d-panoramic-vision](https://github.com/dragonir/3d-panoramic-vision) |
+| 甄开心小镇疑云？ | 3d-panoramic-vision | wangb | [https://github.com/dragonir/3d-panoramic-vision](https://github.com/dragonir/3d-panoramic-vision) |
 
 
 
