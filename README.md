@@ -19,7 +19,7 @@
 | 圈小猫 | catch-the-cat | xf11075 | [https://github.com/xf11075/catch-the-cat?tab=readme-ov-file](https://github.com/xf11075/catch-the-cat?tab=readme-ov-file) |
 | 五子棋 | gobang | jasnature | [https://github.com/jasnature/gobang_html5](https://github.com/jasnature/gobang_html5) |
 | 大富翁 | RichMan | Rayyyz | [https://github.com/Rayyyz/RichMan?tab=readme-ov-file](https://github.com/Rayyyz/RichMan?tab=readme-ov-file) |
-
+| 走迷宫 | maze | knightyun | [https://github.com/knightyun/maze-game](https://github.com/knightyun/maze-game) |
 
 
 
