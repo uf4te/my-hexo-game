@@ -1,6 +1,6 @@
 var stop, staticx;
 var img = new Image();
-img.src = "/img/blog/sakura.png";   // 如果想更换漂浮物样式，可以在img.src = "xxx";处直接修改图片链接
+img.src = "/sakura.png";   // 如果想更换漂浮物样式，可以在img.src = "xxx";处直接修改图片链接
 
 function Sakura(x, y, s, r, fn) {
     this.x = x;
@@ -108,7 +108,7 @@ function startSakura() {
     document.getElementsByTagName('body')[0].appendChild(canvas);
     cxt = canvas.getContext('2d');
     var sakuraList = new SakuraList();
-    for (var i = 0; i < 6; i++) {   // 循环次数控制樱花数量
+    for (var i = 0; i < 15; i++) {   // 循环次数控制樱花数量
         var sakura, randomX, randomY, randomS, randomR, randomFnx, randomFny;
         randomX = getRandom('x');
         randomY = getRandom('y');
