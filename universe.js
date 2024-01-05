@@ -86,7 +86,7 @@ function dark() {
 		u()
 	} (),
 	function t() {
-		(document.getElementsByTagName('html')[0].getAttribute('data-theme') == 'dark' || document.getElementsByTagName('html')[0].getAttribute('data-theme') == 'light') && u(),
+		u(),
 		window.requestAnimationFrame(t)
 	} ()
 };
