@@ -6,11 +6,11 @@ var currentMonth = currentDate.getMonth() + 1;
 
 // 根据当前月份显示不同的漂浮物
 if(currentMonth == 11 || currentMonth == 12 || currentMonth == 1 || currentMonth == 2)
-    img.src = "/img/blog/snow.png";   // 如果想更换漂浮物样式，可以在img.src = "xxx";处直接修改图片链接
+    img.src = "./snow.png";   // 如果想更换漂浮物样式，可以在img.src = "xxx";处直接修改图片链接
 if(currentMonth == 3 || currentMonth == 4 || currentMonth == 5 || currentMonth == 6)
-    img.src = "/img/blog/sakura.png";   // 如果想更换漂浮物样式，可以在img.src = "xxx";处直接修改图片链接
+    img.src = "./sakura.png";   // 如果想更换漂浮物样式，可以在img.src = "xxx";处直接修改图片链接
 if(currentMonth == 7 || currentMonth == 8 || currentMonth == 9 || currentMonth == 10)
-    img.src = "/img/blog/leave.webp";   // 如果想更换漂浮物样式，可以在img.src = "xxx";处直接修改图片链接
+    img.src = "./leave.webp";   // 如果想更换漂浮物样式，可以在img.src = "xxx";处直接修改图片链接
 
 function Sakura(x, y, s, r, fn) {
     this.x = x;
