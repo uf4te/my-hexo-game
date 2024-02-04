@@ -1,6 +1,16 @@
 var stop, staticx;
 var img = new Image();
-img.src = "/sakura.png";   // 如果想更换漂浮物样式，可以在img.src = "xxx";处直接修改图片链接
+
+var currentDate = new Date();
+var currentMonth = currentDate.getMonth() + 1;
+
+// 根据当前月份显示不同的漂浮物
+if(currentMonth == 11 || currentMonth == 12 || currentMonth == 1 || currentMonth == 2)
+    img.src = "/img/blog/snow.png";   // 如果想更换漂浮物样式，可以在img.src = "xxx";处直接修改图片链接
+if(currentMonth == 3 || currentMonth == 4 || currentMonth == 5 || currentMonth == 6)
+    img.src = "/img/blog/sakura.png";   // 如果想更换漂浮物样式，可以在img.src = "xxx";处直接修改图片链接
+if(currentMonth == 7 || currentMonth == 8 || currentMonth == 9 || currentMonth == 10)
+    img.src = "/img/blog/leave.webp";   // 如果想更换漂浮物样式，可以在img.src = "xxx";处直接修改图片链接
 
 function Sakura(x, y, s, r, fn) {
     this.x = x;
@@ -14,7 +24,7 @@ Sakura.prototype.draw = function (cxt) {
     var xc = 40 * this.s / 4;
     cxt.translate(this.x, this.y);
     cxt.rotate(this.r);
-    cxt.drawImage(img, 0, 0, 40 * this.s, 40 * this.s)
+    cxt.drawImage(img, 0, 0, 40 * this.s, 40 * this.s)  // 这里设置樱花的大小
     cxt.restore();
 }
 Sakura.prototype.update = function () {
